@@ -42,6 +42,8 @@ int main(){
         printf("Return date : %s\n", rtn_date);
     }
 
+    fclose(brwdata);
+
     
 
 
