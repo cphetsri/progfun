@@ -12,6 +12,8 @@ int main(){
     char *rtn_date;
     char emname[1020];
     char eqmname[50];
+    char brwdate[11];
+    char rtndate[11];
 
 
     printf("===================================================================\n\n");
@@ -59,12 +61,25 @@ int main(){
         FILE *fop;
         fop = fopen("borrowdata.csv", "a");
         if (fop == NULL) {
-            printf("--Error : Cause by worng name of CSV file or Don't have CSV file!!--\n");
+            printf("-Error : Cause by worng name of CSV file or Don't have CSV file!!-\n");
             printf("===================================================================\n");
             return 1;
         }
 
-        // fprintf(fop, "%s,%s", emname,eqmname);
+        printf("Enter [Name Sirname] : ");
+        scanf("%1019s", emname);
+
+        printf("Enter [Equipment]" : );
+        scanf("%49s", eqmname);
+
+        printf("Enter Borrow Date [YYYY-MM-DD] : ");
+        scanf("%10s", brwdate);
+
+        printf("Enter Return Date [YYYY-MM-DD] : ");
+        scanf("%10s", rtndate);
+
+
+        fprintf(fop, "%s,%s,%s,%s", emname,eqmname,brwdata,rtndate);
 
         fclose(fop);
         printf("\nAlready added.\n");
