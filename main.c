@@ -55,14 +55,16 @@ int main(){
         fclose(brwdata);
 
     } else if (decide == 2){
+        printf("\n===================================================================\n\n");
         FILE *fop;
         fop = fopen("borrowdata.csv", "a");
         if (fop == NULL) {
-            printf("Error when opening the file!\n");
+            printf("--Error : Cause by worng name of CSV file or Don't have CSV file!!--\n");
+            printf("===================================================================\n");
             return 1;
         }
 
-        fprintf(fop, "\"Johnny Depp\", \"projecttor\", \"2025-08-01\", \"2025-08-29\"");
+        // fprintf(fop, "%s,%s", emname,eqmname);
 
         fclose(fop);
         printf("\nAlready added.\n");
