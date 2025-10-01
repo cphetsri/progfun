@@ -107,7 +107,7 @@ int main(){
         char keyword[1200];
         int found = 0;
 
-        printf("Who or What are you looking for? : ");
+        printf("Who/What are you looking for? : ");
         scanf("%s", keyword);
 
         while(fgets(line, sizeof(line), srchdata)) {
@@ -118,13 +118,29 @@ int main(){
             char *token = strtok(line_copy, ",");
             while (token != NULL) {
                 if (strstr(token, keyword) != NULL) {
-                    printf("\nFound '%s' in data base ---> %s\n", keyword, line);
+                    // printf("Found '%s' in data base ---> %s\n", keyword, line);
                     found = 1;
-                    break;
+                    emp_name = strtok(line, ",");
+                    printf("Employee Name : %s\n", emp_name);
+
+                    eqm_name = strtok(NULL, ",");
+                    printf("Equipment that they need : %s\n", eqm_name);
+
+                    brw_date = strtok(NULL, ",");
+                    printf("Borrow date : %s\n", brw_date);
+
+                    rtn_date = strtok(NULL, ",");
+                    printf("Return date : %s\n", rtn_date);
+                    // break;
                 }
                 token = strtok(NULL, ",");
             }
+
+        } if (!found) {
+            printf("Not Found anything about '%s', Maybe wrong input.\n", keyword);
         }
+        fclose(srchdata);
+        return 0;
 
 
 
