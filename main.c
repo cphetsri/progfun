@@ -11,6 +11,7 @@ int main(){
     char *brw_date;
     char *rtn_date;
     char emname[1020];
+    char emsirname[100];
     char eqmname[50];
     char brwdate[11];
     char rtndate[11];
@@ -67,23 +68,28 @@ int main(){
         }
 
         printf("Enter [Name Sirname] : ");
-        scanf("%1019s", emname);
+        scanf("%1019s %99s", emname, emsirname);
 
-        printf("Enter [Equipment]" : );
-        scanf("%49s", eqmname);
+        printf("Enter [Equipment] : ");
+        scanf("\n%49s", eqmname);
 
         printf("Enter Borrow Date [YYYY-MM-DD] : ");
-        scanf("%10s", brwdate);
+        scanf("\n%10s", brwdate);
 
         printf("Enter Return Date [YYYY-MM-DD] : ");
-        scanf("%10s", rtndate);
+        scanf("\n%10s", rtndate);
 
-
-        fprintf(fop, "%s,%s,%s,%s", emname,eqmname,brwdata,rtndate);
+        strcat(emname, " ");
+        strcat(emname, emsirname);
+        fprintf(fop, "\n%s,%s,%s,%s", emname,eqmname,brwdate,rtndate);
 
         fclose(fop);
         printf("\nAlready added.\n");
         return 0;
+
+    } else if (decide == 3){
+
+    } else if (decide == 4){
 
     } else {
         printf("\n################################################################\n");
