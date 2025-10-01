@@ -1,4 +1,4 @@
-"EmployeeName", "EquipmentName", "BorrowDate", "ReturnDate"
-"John Doe", "Laptop", "2025-08-01", "2025-08-05"
-"Jane Smith", "Projector", "2025-08-03", "2025-08-07"
-"Johnny Depp", "projecttor", "2025-08-01", "2025-08-29"
+EmployeeName, EquipmentName, BorrowDate, ReturnDate
+John Doe, Laptop, 2025-08-01, 2025-08-05
+Jane Smith, Projector, 2025-08-03, 2025-08-07
+Johnny Depp, projecttor, 2025-08-01, 2025-08-29
