@@ -64,9 +64,9 @@ int main(){
 
     } else if (decide == 2){
         printf("\n===================================================================\n\n");
-        FILE *fop;
-        fop = fopen("borrowdata.csv", "a");
-        if (fop == NULL) {
+        FILE *srchdata;
+        srchdata = fopen("borrowdata.csv", "a");
+        if (srchdata == NULL) {
             printf("-Error : Cause by worng name of CSV file or Don't have CSV file!!-\n");
             printf("===================================================================\n");
             return 1;
@@ -86,9 +86,9 @@ int main(){
 
         strcat(emname, " ");
         strcat(emname, emsirname);
-        fprintf(fop, "\n%s,%s,%s,%s", emname,eqmname,brwdate,rtndate);
+        fprintf(srchdata, "\n%s, %s, %s, %s", emname,eqmname,brwdate,rtndate);
 
-        fclose(fop);
+        fclose(srchdata);
         printf("\nAlready added.\n");
         return 0;
 
@@ -146,6 +146,19 @@ int main(){
 
 
     } else if (decide == 4){
+        printf("\n===================================================================\n\n");
+        FILE *srchdata = fopen("borrowdata.csv", "r");
+        if (srchdata == NULL) {
+            printf("-Error : Cause by worng name of CSV file or Don't have CSV file!!-\n");
+            printf("===================================================================\n");
+            return 1;
+        }
+
+        FILE *tempFile = fopen("borrowdata.csv", "w");
+        if (tempFile == NULL) {
+            fclose(srchdata);
+        }
+
 
 
 
@@ -156,16 +169,6 @@ int main(){
         printf("\n################################################################\n");
 
     }
-
-    
-
-
-
-
-
-
-
-    
 
 }
 
