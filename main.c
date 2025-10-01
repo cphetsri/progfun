@@ -149,7 +149,7 @@ int main(){
         printf("\n===================================================================\n\n");
         FILE *srchdata = fopen("borrowdata.csv", "r");
         if (srchdata == NULL) {
-            printf("-Error : Cause by worng name of CSV file or Don't have CSV file!!-\n");
+            perror("-Error : Cause by worng name of CSV file or Don't have CSV file!!-\n");
             printf("===================================================================\n");
             return 1;
         }
@@ -157,6 +157,12 @@ int main(){
         FILE *tempFile = fopen("borrowdata.csv", "w");
         if (tempFile == NULL) {
             fclose(srchdata);
+        }
+
+        char line[LINE_SIZE];
+
+        while (fgets(line, sizeof(line), fp)) {
+
         }
 
 
