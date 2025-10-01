@@ -39,23 +39,24 @@ int main(){
         printf("===================================================================\n");
 
         fgets(buffer, sizeof(buffer), brwdata);
-        // printf("\nThe first line is :\n%s\n", buffer);
+        printf("\n%s\n", buffer);
 
         while(fgets(buffer, sizeof(buffer), brwdata)) {
-            // printf("The rest of the line is :\n%s\n", buffer);
+            printf("%s", buffer);
 
-            emp_name = strtok(buffer, ",");
-            printf("Employee Name : %s\n", emp_name);
+            // emp_name = strtok(buffer, ",");
+            // printf("Employee Name : %s\n", emp_name);
 
-            eqm_name = strtok(NULL, ",");
-            printf("Equipment that they need : %s\n", eqm_name);
+            // eqm_name = strtok(NULL, ",");
+            // printf("Equipment that they need : %s\n", eqm_name);
 
-            brw_date = strtok(NULL, ",");
-            printf("Borrow date : %s\n", brw_date);
+            // brw_date = strtok(NULL, ",");
+            // printf("Borrow date : %s\n", brw_date);
 
-            rtn_date = strtok(NULL, ",");
-            printf("Return date : %s\n", rtn_date);
+            // rtn_date = strtok(NULL, ",");
+            // printf("Return date : %s\n", rtn_date);
         }
+        printf("\n");
 
         fclose(brwdata);
 
@@ -124,7 +125,7 @@ int main(){
                     printf("Employee Name : %s\n", emp_name);
 
                     eqm_name = strtok(NULL, ",");
-                    printf("Equipment that they need : %s\n", eqm_name);
+                    printf("Equipment that they borrow : %s\n", eqm_name);
 
                     brw_date = strtok(NULL, ",");
                     printf("Borrow date : %s\n", brw_date);
