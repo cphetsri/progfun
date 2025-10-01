@@ -10,6 +10,8 @@ int main(){
     char *eqm_name;
     char *brw_date;
     char *rtn_date;
+    char emname[1020];
+    char eqmname[50];
 
 
     printf("===================================================================\n\n");
