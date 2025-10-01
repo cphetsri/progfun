@@ -59,9 +59,9 @@ int main(){
             printf("Error when opening the file!\n");
             return 1;
         }
-    
+
         fprintf(fop, "\"Johnny Depp\", \"projecttor\", \"2025-08-01\", \"2025-08-29\"");
-    
+
         fclose(fop);
         printf("\nAlready added.\n");
         return 0;
