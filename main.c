@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define 
+
 int main(){
 
     int decide;
@@ -88,6 +90,31 @@ int main(){
         return 0;
 
     } else if (decide == 3){
+        printf("\n===================================================================\n\n");
+        FILE *srchdata = fopen("borrowdata.csv", "r");
+        if (srchdata == NULL) {
+            printf("################ Error: could not open csv file ################### \n\n-------- File name doesn't match or That file doesn't exit --------\n\n");
+            printf("===================================================================\n");
+            return 1;
+        }
+
+
+        char temp[TEMP_SIZE];
+        while(fgets(temp, sizeof(temp), srchdata) != NULL) {
+            char *token;
+            char line_copy[TEMP_SIZE];
+            strcpy(line_copy, temp);
+
+            token = strtok(line_copy, ",");
+            while (token != NULL) {
+                token = strtok(NULL, ",");
+
+                if (strstr(token, "Johnny") != NULL) {
+                    printf("Found 'Johnny' in line: %s", temp);
+                    fclose(srchdata);
+                }
+            }
+        } 
 
     } else if (decide == 4){
 
