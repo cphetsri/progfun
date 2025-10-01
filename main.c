@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define 
+#define LINE_SIZE 1200
 
 int main(){
 
@@ -59,6 +59,8 @@ int main(){
 
         fclose(brwdata);
 
+
+
     } else if (decide == 2){
         printf("\n===================================================================\n\n");
         FILE *fop;
@@ -89,6 +91,8 @@ int main(){
         printf("\nAlready added.\n");
         return 0;
 
+
+
     } else if (decide == 3){
         printf("\n===================================================================\n\n");
         FILE *srchdata = fopen("borrowdata.csv", "r");
@@ -99,24 +103,35 @@ int main(){
         }
 
 
-        char temp[TEMP_SIZE];
-        while(fgets(temp, sizeof(temp), srchdata) != NULL) {
-            char *token;
-            char line_copy[TEMP_SIZE];
-            strcpy(line_copy, temp);
+        char line[LINE_SIZE];
+        char keyword[1200];
+        int found = 0;
 
-            token = strtok(line_copy, ",");
+        printf("Who or What are you looking for? : ");
+        scanf("%s", keyword);
+
+        while(fgets(line, sizeof(line), srchdata)) {
+            
+            char line_copy[LINE_SIZE];
+            strcpy(line_copy, line);
+
+            char *token = strtok(line_copy, ",");
             while (token != NULL) {
-                token = strtok(NULL, ",");
-
-                if (strstr(token, "Johnny") != NULL) {
-                    printf("Found 'Johnny' in line: %s", temp);
-                    fclose(srchdata);
+                if (strstr(token, keyword) != NULL) {
+                    printf("\nFound '%s' in data base ---> %s\n", keyword, line);
+                    found = 1;
+                    break;
                 }
+                token = strtok(NULL, ",");
             }
-        } 
+        }
+
+
 
     } else if (decide == 4){
+
+
+
 
     } else {
         printf("\n################################################################\n");
