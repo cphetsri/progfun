@@ -1,6 +1,7 @@
 EmployeeName, EquipmentName, BorrowDate, ReturnDate
 John Doe, Laptop, 2025-08-01, 2025-08-05
 Jane Smith, Projector, 2025-08-03, 2025-08-07
-Johnny Depp, projecttor, 2025-08-01, 2025-08-29
-Jean Willson,ducktape,2025-10-01,-
-Jean Johnson, GammingGear, 2025-10-02, -
+Johnny Depp, Projecttor, 2025-08-01, 2025-08-29
+Jean Willson, Ducktape, 2025-05-01, 2025-06-14
+Jean Johnson, Hair, 2025-09-23, 2025-10-02
+Paul Walker, Key, 2025-04-01, 2025-10-26
