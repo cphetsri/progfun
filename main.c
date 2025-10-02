@@ -64,7 +64,7 @@ int main(){
         scanf("%1019s %99s", emname, emsirname);
 
         printf("Enter [Equipment] : ");
-        scanf("\n%49s", eqmname);
+        scanf("\n%[^\n]", eqmname);
 
         printf("Enter Borrow Date [YYYY-MM-DD] : ");
         scanf("\n%10s", brwdate);
@@ -165,7 +165,7 @@ int main(){
 
                 printf("Found %s\n", keyword);
                 printf("Enter NEW Equipment : ");
-                scanf(" %99s", newEqm);
+                scanf(" %[^\n]", newEqm);
 
                 printf("Enter NEW Borrow Date [YYYY-MM-DD] : ");
                 scanf(" %19s", newBrw);
