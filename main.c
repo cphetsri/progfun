@@ -20,7 +20,7 @@ int main(){
 
 
     printf("===================================================================\n\n");
-    printf("Read a Log -- (1)\nBorrow Some Thing -- (2)\nSearch for Borrow Date -- (3)\nEdit Data -- (4)\n");
+    printf("Read a Log -- (1)\nBorrow Some Thing -- (2)\nSearch for Borrow Date -- (3)\nEdit Data -- (4)\nExit the Program -- (0)");
     printf("\n===================================================================\n\n");
     printf("What do you want to do [input the number] : ");
     scanf("%d", &decide);
@@ -193,7 +193,10 @@ int main(){
 
 
 
-    } else {
+    } else if (decide == 0){
+        exit(0);
+    
+    }else {
         printf("\n################################################################\n");
         printf("\n#----------Error : Cause by insert incorrect NUMBER!!----------#\n");
         printf("\n################################################################\n");
