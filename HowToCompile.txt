@@ -12,7 +12,9 @@ go to your terminal and use " $ gcc main.c -o <name that you want> "
 # ALEART!!, you need to use in windows only!! (for this command.....)
 
 
-and execute it with " $ ./<name that you named it> "
+and after that execute it with " $ ./<name that you named it> "
+
+And Do the same With other Files.
 
 That It's, It should Work..... (I Think..😆) 
 
