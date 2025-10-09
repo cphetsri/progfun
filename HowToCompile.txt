@@ -1,11 +1,11 @@
 =================================================================================================
 Hello, World!!  :)
 
-This file will make sure u can run my Program properly :)
+📌 This file will make sure u can run my Program properly :)
 
 -------------------------------------------------------------------------------------------------
 
-็How to COMPILE my program is.........
+็How to COMPILE my program is.........🧐
 
 go to your terminal and use " $ gcc main.c -o <name that you want> "
 
@@ -14,6 +14,6 @@ go to your terminal and use " $ gcc main.c -o <name that you want> "
 
 and execute it with " $ ./<name that you named it> "
 
-That It's, It should Work..... (I Think..)
+That It's, It should Work..... (I Think..😆) 
 
 ==================================================================================================
