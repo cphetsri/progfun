@@ -14,8 +14,8 @@
     char emname[1020];
     char emsirname[100];
     char eqmname[50];
-    char brwdate[11];
-    char rtndate[11];
+    char brwdate[15];
+    char rtndate[15];
 
 void waitForEnter(){
     printf("\nPress [ENTER] to return to the main menu......");
@@ -23,22 +23,57 @@ void waitForEnter(){
     getchar();
 }
 
+void waitForCon(){
+    printf("\nPress [ENTER] to Continue......");
+    getchar();
+    getchar();
+}
+
+int isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year & 400 == 0);
+}
+
+int isValidDate(int day,int month, int year) {
+    if(year < 1900 || year > 2100) return 0;
+    if(month < 1 || month > 12) return 0 ;
+    if(day < 1) return 0;
+
+    int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if(isLeapYear(year)) daysInMonth[2] = 29;
+
+    if(day > daysInMonth[month]) return 0;
+
+    return 1;
+}
+
+int compareDates(int d1, int m1, int y1, int d2, int m2, int y2){
+    if(y1 < y2) return 1;
+    if(y1 > y2) return -1;
+    if(m1 < m2) return 1;
+    if(m1 > m2) return -1;
+    if(d1 < d2) return 1;
+    if(d1 > d2) return -1;
+    return 0;
+}
+
 int decideThing(){
 
     while (1) {
 
         printf("===================================================================\n\n");
-        printf("Read a Log -- (1)\nBorrow Some Thing -- (2)\nSearch for Borrow Date -- (3)\nUpdate Data -- (4)\nDelete Data -- (5)\nExit the Program -- (0)\n");
+        printf("Read a Log -- (1)\nBorrow Some Thing -- (2)\nSearch in Data -- (3)\nFix Some Thing in Data -- (4)\nDelete Some Thing in Data -- (5)\n\nExit the Program -- (0)\n");
         printf("\n===================================================================\n\n");
         printf("What do you want to do [input the number] : ");
         scanf("%d", &decide);
 
         if (decide == 1){
+            printf("\nYou selected Read a Log-------(1)");
+            waitForCon();
             printf("\n===================================================================\n\n");
             FILE *brwdata = fopen("borrowdata.csv", "r");
             if (brwdata == NULL) {
                 printf("################ Error: could not open csv file ################### \n\n-------- File name doesn't match or That file doesn't exit --------\n\n");
-                printf("===================================================================\n");
+                printf("===================================================================");
                 waitForEnter();
                 continue;
             }
@@ -62,8 +97,8 @@ int decideThing(){
             // return 0;
 
         } else if (decide == 2){
-            printf("You selected Borrow Some Thing (2)");
-            waitForEnter();
+            printf("\nYou selected Borrow Some Thing---------(2)");
+            waitForCon();
             printf("\n===================================================================\n\n");
             FILE *srchdata;
             srchdata = fopen("borrowdata.csv", "a");
@@ -74,19 +109,47 @@ int decideThing(){
             }
 
             printf("Enter [Name Sirname] : ");
-            scanf("%1019s %99s", emname, emsirname);
+            scanf("\n%[^\n]", emname);
 
             printf("Enter [Equipment] : ");
             scanf("\n%[^\n]", eqmname);
 
-            printf("Enter Borrow Date [YYYY-MM-DD] : ");
-            scanf("\n%10s", brwdate);
+            int bd, bm, by;
+            int rd, rm, ry;
 
-            printf("Enter Return Date [YYYY-MM-DD] : ");
-            scanf("\n%10s", rtndate);
+            do {
+                printf("Enter Borrow Date [YYYY MM DD] : ");
+                scanf("%d %d %d", &by, &bm, &bd);
 
-            strcat(emname, " ");
-            strcat(emname, emsirname);
+                if(!isValidDate(bd, bm, by))
+                    printf("Invalid Borrow Date!! Please try again.\n");
+            } while (!isValidDate(bd, bm, by));
+
+            do {
+                printf("Enter Return Date [YYYY MM DD] : ");
+                scanf("%d %d %d", &ry, &rm, &rd);
+
+                if(!isValidDate(rd, rm, ry)) {
+                    printf("\nInvalid Return Date!! Please try again.\n");
+                    continue;
+            }
+
+            int cmp = compareDates(bd, bm, by, rd, rm, ry);
+
+            if(cmp != 1) {
+                printf("\nInvalid! Return Date must be after borrow date.\n");
+                continue;
+            }
+            break;
+        } while (1);
+
+            char sbrwdate[15], srtndate[15];
+            sprintf(sbrwdate, "%04d-%02d-%02d", by, bm, bd);
+            sprintf(srtndate, "%04d-%02d-%02d", ry, rm, rd);
+        
+            strcpy(brwdate, sbrwdate);
+            strcpy(rtndate, srtndate);
+            
             fprintf(srchdata, "\n%s, %s, %s, %s", emname,eqmname,brwdate,rtndate);
 
             fclose(srchdata);
@@ -97,6 +160,8 @@ int decideThing(){
             continue;
 
         } else if (decide == 3){
+            printf("\nYou selected Search in Data---------(3)");
+            waitForCon();
             printf("\n===================================================================\n\n");
             FILE *srchdata = fopen("borrowdata.csv", "r");
             if (srchdata == NULL) {
@@ -146,6 +211,8 @@ int decideThing(){
             continue;
 
         } else if (decide == 4){
+            printf("\nYou selected Fix Some Thing in Data------(4)");
+            waitForCon();
             printf("\n===================================================================\n\n");
 
             FILE *brwdata = fopen("borrowdata.csv", "r");
@@ -183,11 +250,41 @@ int decideThing(){
                     printf("Enter NEW Equipment : ");
                     scanf(" %[^\n]", newEqm);
 
-                    printf("Enter NEW Borrow Date [YYYY-MM-DD] : ");
-                    scanf(" %19s", newBrw);
+                    int bd, bm, by;
+                    int rd, rm, ry;
 
-                    printf("Enter NEW Return Date [YYYY-MM-DD] : ");
-                    scanf(" %19s", newRtn);
+                    do {
+                        printf("Enter Borrow Date [YYYY MM DD] : ");
+                        scanf("%d %d %d", &by, &bm, &bd);
+
+                        if(!isValidDate(bd, bm, by))
+                            printf("Invalid Borrow Date!! Please try again.\n");
+                    } while (!isValidDate(bd, bm, by));
+
+                    do {
+                        printf("Enter Return Date [YYYY MM DD] : ");
+                        scanf("%d %d %d", &ry, &rm, &rd);
+
+                        if(!isValidDate(rd, rm, ry)) {
+                            printf("\nInvalid Return Date!! Please try again.\n");
+                            continue;
+                    }
+
+                    int cmp = compareDates(bd, bm, by, rd, rm, ry);
+
+                    if(cmp != 1) {
+                        printf("\nInvalid! Return Date must be after borrow date.\n");
+                        continue;
+                    }
+                    break;
+                } while (1);
+
+                    char sbrwdate[15], srtndate[15];
+                    sprintf(sbrwdate, "%04d-%02d-%02d", by, bm, bd);
+                    sprintf(srtndate, "%04d-%02d-%02d", ry, rm, rd);
+
+                    strcpy(newBrw, sbrwdate);
+                    strcpy(newRtn, srtndate);
 
                     fprintf(tempFile, "%s, %s, %s, %s\n", emp, newEqm, newBrw, newRtn);
                 } else {
@@ -212,6 +309,8 @@ int decideThing(){
             continue;
 
         } else if (decide == 5){
+            printf("\nYou selected Delete Some Thing in Data-------(5)");
+            waitForCon();
             printf("\n===================================================================\n\n");
 
             FILE *brwdata = fopen("borrowdata.csv", "r");
