@@ -5,7 +5,7 @@ Hello, World!!  :)
 
 -------------------------------------------------------------------------------------------------
 
-็How to COMPILE my program is.........🧐
+How to COMPILE my program is.........🧐
 
 go to your terminal and use " $ gcc main.c -o <name that you want> "
 
