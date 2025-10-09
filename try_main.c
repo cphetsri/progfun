@@ -44,6 +44,7 @@ int decideThing(){
         }
         printf("\n");
         fclose(brwdata);
+
         return 0;
 
 
